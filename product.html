@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shopee</title>
-  <link rel="icon" type="image/x-icon" href="./assets/img/favicon.png">
+    <link rel="icon" type="image/x-icon" href="./assets/img/favicon.png">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
         integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
@@ -27,14 +27,16 @@
             <div class="grid wide">
                 <nav class="header__navbar hide-on-mobile-tablet">
                     <ul class="header__navbar-list">
+
                         <li class="header__navbar-item header__navbar-item--separate">
                             Kênh người bán
                         </li>
+
                         <li class="
-                  header__navbar-item
-                  header__navbar-item--has-qr
-                  header__navbar-item--separate
-                ">
+                        header__navbar-item
+                        header__navbar-item--has-qr
+                        header__navbar-item--separate
+                      ">
                             Tải ứng dụng
                             <!-- QR -->
                             <div class="header__qr">
@@ -49,6 +51,7 @@
                                 </div>
                             </div>
                         </li>
+
                         <li class="header__navbar-item">
                             <span class="header__navbar-item--no-pointer"> Kết nối </span>
                             <a href="" class="header__navbar-icon-link">
@@ -59,6 +62,7 @@
                             </a>
                         </li>
                     </ul>
+
 
                     <ul class="header__navbar-list">
                         <!-- Notify -->
@@ -74,8 +78,8 @@
                                 <ul class="header__notify-list">
                                     <li class="header__notify-item">
                                         <a href="" class="
-                          header__notify-link header__notify-link--not-seen
-                        ">
+                                header__notify-link header__notify-link--not-seen
+                              ">
                                             <img src="./assets/img/mypham.jpeg" alt="" class="header__notify-img" />
                                             <div class="header__notify-info">
                                                 <span class="header__notify-name">Combo 3 Kem Dưỡng Trắng Ohui Extreme
@@ -90,8 +94,8 @@
                                     </li>
                                     <li class="header__notify-item">
                                         <a href="" class="
-                          header__notify-link header__notify-link--not-seen
-                        ">
+                                header__notify-link header__notify-link--not-seen
+                              ">
                                             <img src="./assets/img/mypham.jpeg" alt="" class="header__notify-img" />
                                             <div class="header__notify-info">
                                                 <span class="header__notify-name">Combo 3 Kem Dưỡng Trắng Ohui Extreme
@@ -159,34 +163,30 @@
                                 Hỗ trợ
                             </a>
                         </li>
-
+                        <!-- User -->
                         <li class="header__navbar-item header__navbar-user">
                             <img src="./assets/img/avatar.jpeg" alt="" class="header__navbar-user-img" />
                             <span class="header__navbar-user-name">Tuyet Ca</span>
                             <ul class="header__navbar-user-menu">
                                 <li class="header__navbar-user-item">
-                                    <a href="">Tài khoản của tôi</a>
+                                    <a>Tài khoản của tôi</a>
                                 </li>
                                 <li class="header__navbar-user-item">
-                                    <a href="">Đơn mua</a>
+                                    <a>Đơn mua</a>
                                 </li>
-                                <li class="header__navbar-user-item">
-                                    <a href="">Đăng xuất</a>
+                                <li class="header__navbar-user-item header__navbar-user-item-logout">
+                                    <a>Đăng xuất</a>
                                 </li>
                             </ul>
                         </li>
-                        <!-- <li
-                class="
-                  header__navbar-item
-                  header__navbar-item--strong
-                  header__navbar-item--separate
-                "
-              >
-                Đăng ký
-              </li>
-              <li class="header__navbar-item header__navbar-item--strong">
-                Đăng nhập
-              </li> -->
+
+                        <li
+                            class="header__navbar-item header__navbar-item--strong header__navbar-item--separate header__navbar-item-signup">
+                            Đăng ký
+                        </li>
+                        <li class="header__navbar-item header__navbar-item--strong header__navbar-item-signin">
+                            Đăng nhập
+                        </li>
                     </ul>
                 </nav>
 
@@ -196,7 +196,7 @@
                         <i class="fas fa-search header__mobile-search-icon"></i>
                     </label>
 
-                    <div class="header__logo hide-on-tablet">
+                    <a href="index.html" class="header__logo hide-on-tablet">
                         <svg viewBox="0 0 192 65" class="header__logo-img">
                             <g fill-rule="evenodd">
                                 <path fill="#fff"
@@ -204,7 +204,7 @@
                                 </path>
                             </g>
                         </svg>
-                    </div>
+                    </a>
 
                     <input type="checkbox" hidden id="mobile-search-checkbox" class="header__search-checkbox">
 
@@ -225,21 +225,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="header__search-select">
-                            <span class="header__search-select-label">Trong Shop</span>
-                            <i class="header__search-select-icon fas fa-chevron-down"></i>
-
-                            <ul class="header__search-option">
-                                <li class="option__item option__item--active">
-                                    <span>Trong shop</span>
-                                    <i class="fas fa-check"></i>
-                                </li>
-                                <li class="option__item">
-                                    <span>Ngoài shop</span>
-                                    <i class="option__item-icon fas fa-check"></i>
-                                </li>
-                            </ul>
-                        </div>
+                        
                         <button class="header__search-btn">
                             <i class="header__search-btn-icon fas fa-search"></i>
                         </button>
@@ -248,48 +234,24 @@
                     <!-- Cart layout -->
                     <div class="header__cart">
                         <div class="header__cart-wrap">
-                            <div class="header__cart-notice">3</div>
+                            <div class="header__cart-notice">1</div>
                             <i class="header__cart-icon fas fa-shopping-cart"></i>
 
                             <!-- No cart:  header__cart-list--no-cart-->
-                            <div class="header__cart-list">
+                            <div class="header__cart-list header__cart-list--no-cart">
                                 <img class="header__cart-no-cart-img" src="./assets/img/no-cart.png" alt="" />
                                 <span class="header__cart-no-cart-msg">Chưa có sản phẩm</span>
 
-                                <h4 class="header__cart-heading">Sản phẩm mới thêm</h4>
-                                <ul class="header__cart-list-item">
-                                    <li class="header__cart-item">
-                                        <img src="./assets/img/mypham.jpeg" alt="" class="header__cart-img" />
-                                        <div class="header__cart-item-info">
-                                            <div class="header__cart-item-name">
-                                                Bộ kem đặc trị vùng mắt
-                                            </div>
-                                            <span class="header__cart-item-price">2.000.000đ</span>
-                                        </div>
-                                    </li>
-                                    <li class="header__cart-item">
-                                        <img src="./assets/img/mypham.jpeg" alt="" class="header__cart-img" />
-                                        <div class="header__cart-item-info">
-                                            <div class="header__cart-item-name">
-                                                Bộ kem đặc trị vùng mắt. Bộ kem đặc trị vùng mắt
-                                            </div>
-                                            <span class="header__cart-item-price">2.000.000đ</span>
-                                        </div>
-                                    </li>
-                                    <li class="header__cart-item">
-                                        <img src="./assets/img/mypham.jpeg" alt="" class="header__cart-img" />
-                                        <div class="header__cart-item-info">
-                                            <div class="header__cart-item-name">
-                                                Bộ kem đặc trị vùng mắt
-                                            </div>
-                                            <span class="header__cart-item-price">2.000.000đ</span>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <div class="header__cart-footer">
-                                    <button class="btn btn--primary header__cart-footer-btn">
-                                        Xem giỏ hàng
-                                    </button>
+                                <div class="header__cart-list-wrapper">
+                                    <h4 class="header__cart-heading">Sản phẩm mới thêm</h4>
+                                    <ul class="header__cart-list-item">
+
+                                    </ul>
+                                    <div class="header__cart-footer">
+                                        <button class="btn btn--primary header__cart-footer-btn">
+                                            Xem giỏ hàng
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -313,7 +275,7 @@
         </header>
 
         <div class="container">
-            <div class="grid wide">
+            <!-- <div class="grid wide">
                 <div class="row content">
                     <div class="col l-5 m-5 c-12">
                         <nav class="img">
@@ -356,7 +318,7 @@
                                     <div class="col l-6 m-6 c-0">
                                         <div class="img__social">
                                             <p class="img__social-title">Chia sẻ:</p>
-                                            
+
                                         </div>
                                     </div>
                                     <div class="col l-6 m-6 c-0">
@@ -364,7 +326,7 @@
                                             <i class="home-product-item__like-icon-empty far fa-heart"></i>
                                             <i class="home-product-item__like-icon-fill fas fa-heart"></i>
                                             <p class="img__like-count">Đã thích (3,3k)</p>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -377,7 +339,7 @@
                             <div class="description__price">
                                 <span class="description__price-old">400.000đ</span>
                                 <span class="description__price-new">360.000đ</span>
-                            </div>                           
+                            </div>
                             <div class="description__discount">
                                 <span class="description__discount-title">Mã giảm giá của shop</span>
                             </div>
@@ -388,25 +350,27 @@
                             <div class="description__color">
                                 <span class="description__color-title">Màu sắc</span>
                                 <input type="radio" hidden name="color" id="description__color-black">
-                                <label for="description__color-black" class ="description__color-radio-black">Đen</label>
+                                <label for="description__color-black" class="description__color-radio-black">Đen</label>
                                 <input type="radio" hidden name="color" id="description__color-white">
-                                <label for="description__color-white" class ="description__color-radio-white">Trắng</label>
-                                
+                                <label for="description__color-white"
+                                    class="description__color-radio-white">Trắng</label>
+
                             </div>
                             <div class="description__size">
                                 <span class="description__size-title">Size</span>
                                 <input type="radio" hidden name="size" id="description__size-s">
-                                <label for="description__size-s" class ="description__size-radio-s">S</label>
+                                <label for="description__size-s" class="description__size-radio-s">S</label>
                                 <input type="radio" hidden name="size" id="description__size-m">
-                                <label for="description__size-m" class ="description__size-radio-m">M</label>
+                                <label for="description__size-m" class="description__size-radio-m">M</label>
                                 <input type="radio" hidden name="size" id="description__size-l">
-                                <label for="description__size-l" class ="description__size-radio-l">L</label>
+                                <label for="description__size-l" class="description__size-radio-l">L</label>
                                 <input type="radio" hidden name="size" id="description__size-xl">
-                                <label for="description__size-xl" class ="description__size-radio-xl">XL</label>
+                                <label for="description__size-xl" class="description__size-radio-xl">XL</label>
                             </div>
                             <div class="description__quantity">
                                 <span class="description__quantity-title">Số lượng</span>
-                                <input type="number" name="" id=""  min="1" max="100" value="1" class="description__quantity-input">
+                                <input type="number" name="" id="" min="1" max="100" value="1"
+                                    class="description__quantity-input">
 
                             </div>
                             <div class="description__buy">
@@ -419,10 +383,11 @@
                         </nav>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
 
-        <div class="footer">
+
+        <footer class="footer">
             <div class="grid wide">
                 <div class="row sm-gutter">
                     <div class="col l-2-4 m-4 c-6">
@@ -501,109 +466,107 @@
                     <p class="footer__text">Bản quyền thuộc về Shopee</p>
                 </div>
             </div>
+        </footer>
 
-        </div>
-    </div>
-
-    <!-- Modal layout -->
-    <!-- <div class="modal">
-        <div class="modal__overlay"></div>
-
-        <div class="modal__body"> -->
-    <!-- Register form -->
-    <!-- <div class="auth-form">
-                <div class="auth-form__container">
-                    <div class="auth-form__header">
-                        <h3 class="auth-form__heading">Đăng ký</h3>
-                        <span class="auth-form__switch-btn">Đăng nhập</span>
-                    </div>
-
-                    <div class="auth-form__form">
-                        <div class="auth-form__group">
-                            <input type="text" class="auth-form__input" placeholder="Nhập email của bạn">
-                        </div>
-                        <div class="auth-form__group">
-                            <input type="password" class="auth-form__input" placeholder="Nhập mật khẩu của bạn">
-                        </div>
-                        <div class="auth-form__group">
-                            <input type="password" class="auth-form__input" placeholder="Nhập lại mật khẩu">
-                        </div>
-                    </div>
-
-                    <div class="auth-form_aside">
-                        <p class="auth-form__policy-text">
-                            Bằng việc đăng kí, bạn đã đồng ý với F8-Shop về
-                            <a href="" class="auth-form__policy-link">Điều khoản dịch vụ</a> &
-                            <a href="" class="auth-form__policy-link">Chính sách bảo mật</a>
-                        </p>
-                    </div>
-
-                    <div class="auth-form__controls">
-                        <button class="btn auth-form__controls-back">TRỞ LẠI</button>
-                        <button class="btn btn--primary">ĐĂNG KÝ</button>
-                    </div>
-                </div>
-
-
-                <div class="auth-form_socials">
-                    <a href="" class="btn--with-icon auth-form_socials--facebook">
-                        <i class="fab fa-facebook-square"></i>
-                        <span>Kết nối với Facebook</span>
-                    </a>
-
-                    <a href="" class="btn--with-icon auth-form_socials--google">
-                        <i class="fab fa-google"></i>
-                        <span>Kết nối với Google</span>
-                    </a>
-                </div>
-            </div> -->
-
-    <!-- Login form -->
-    <!-- <div class="auth-form">
-                <div class="auth-form__container">
-                    <div class="auth-form__header">
-                        <h3 class="auth-form__heading">Đăng nhập</h3>
-                        <span class="auth-form__switch-btn">Đăng ký</span>
-                    </div>
-
-                    <div class="auth-form__form">
-                        <div class="auth-form__group">
-                            <input type="text" class="auth-form__input" placeholder="Nhập email của bạn">
-                        </div>
-                        <div class="auth-form__group">
-                            <input type="password" class="auth-form__input" placeholder="Nhập mật khẩu của bạn">
+        <!-- Sign up / Sign in -->
+        <div class="modal">
+            <label for="signup-input" class="modal__overlay"></label>
+            <div class="modal__signup">
+                <div class="auth-form">
+                    <div class="auth-form__container">
+                        <div class="auth-form__header">
+                            <h3 class="auth-form__heading">Đăng ký</h3>
+                            <span class="auth-form__switch-btn auth-form__switch-btn-signin">Đăng nhập</span>
                         </div>
 
-                    </div>
-
-                    <div class="auth-form_aside">
-                        <div class="auth-form__help">
-                            <a href="" class="auth-form__help-link auth-form__help-forgot">Quên mật khẩu</a>
-                            <span class="auth-form__help-separate"></span>
-                            <a href="" class="auth-form__help-link">Cần trợ giúp?</a>
+                        <div class="auth-form__form">
+                            <div class="auth-form__group">
+                                <input type="email" class="auth-form__input" placeholder="Nhập email của bạn">
+                            </div>
+                            <div class="auth-form__group">
+                                <input type="password" class="auth-form__input" placeholder="Nhập mật khẩu của bạn">
+                            </div>
+                            <div class="auth-form__group">
+                                <input type="password" class="auth-form__input" placeholder="Nhập lại mật khẩu">
+                            </div>
                         </div>
+
+                        <div class="auth-form_aside">
+                            <p class="auth-form__policy-text">
+                                Bằng việc đăng kí, bạn đã đồng ý với F8-Shop về
+                                <a href="" class="auth-form__policy-link">Điều khoản dịch vụ</a> &
+                                <a href="" class="auth-form__policy-link">Chính sách bảo mật</a>
+                            </p>
+                        </div>
+
                         <div class="auth-form__controls">
                             <button class="btn auth-form__controls-back">TRỞ LẠI</button>
-                            <button class="btn btn--primary">ĐĂNG NHẬP</button>
+                            <button class="btn btn--primary signup-btn">ĐĂNG KÝ</button>
                         </div>
+                    </div>
+
+                    <div class="auth-form_socials">
+                        <a href="" class="btn--with-icon auth-form_socials--facebook">
+                            <i class="fab fa-facebook-square"></i>
+                            <span>Kết nối với Facebook</span>
+                        </a>
+
+                        <a href="" class="btn--with-icon auth-form_socials--google">
+                            <i class="fab fa-google"></i>
+                            <span>Kết nối với Google</span>
+                        </a>
                     </div>
                 </div>
 
+            </div>
 
-                <div class="auth-form_socials">
-                    <a href="" class="btn--with-icon auth-form_socials--facebook">
-                        <i class="fab fa-facebook-square"></i>
-                        <span>Đăng nhập với Facebook</span>
-                    </a>
+            <div class="modal__signin">
+                <div class="auth-form">
+                    <div class="auth-form__container">
+                        <div class="auth-form__header">
+                            <h3 class="auth-form__heading">Đăng nhập</h3>
+                            <span class="auth-form__switch-btn auth-form__switch-btn-signup">Đăng ký</span>
+                        </div>
 
-                    <a href="" class="btn--with-icon auth-form_socials--google">
-                        <i class="fab fa-google"></i>
-                        <span>Đăng nhập với Google</span>
-                    </a>
+                        <div class="auth-form__form">
+                            <div class="auth-form__group">
+                                <input type="text" class="auth-form__input" placeholder="Nhập email của bạn">
+                            </div>
+                            <div class="auth-form__group">
+                                <input type="password" class="auth-form__input" placeholder="Nhập mật khẩu của bạn">
+                            </div>
+
+                        </div>
+
+                        <div class="auth-form_aside">
+                            <div class="auth-form__help">
+                                <a href="" class="auth-form__help-link auth-form__help-forgot">Quên mật khẩu</a>
+                                <span class="auth-form__help-separate"></span>
+                                <a href="" class="auth-form__help-link">Cần trợ giúp?</a>
+                            </div>
+                            <div class="auth-form__controls">
+                                <button class="btn auth-form__controls-back">TRỞ LẠI</button>
+                                <button class="btn btn--primary signin-btn">ĐĂNG NHẬP</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="auth-form_socials">
+                        <a href="" class="btn--with-icon auth-form_socials--facebook">
+                            <i class="fab fa-facebook-square"></i>
+                            <span>Đăng nhập với Facebook</span>
+                        </a>
+
+                        <a href="" class="btn--with-icon auth-form_socials--google">
+                            <i class="fab fa-google"></i>
+                            <span>Đăng nhập với Google</span>
+                        </a>
+                    </div>
                 </div>
-            </div> -->
-    <!-- </div> -->
+            </div>
+        </div>
 </body>
 <script src="./assets/js/main.js"></script>
+<script src="./assets/js/product.js"></script>
 
 </html>

@@ -1,23 +1,70 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
-body = $("body");
-signUp = $(".header__navbar-item-signup");
-signIn = $(".header__navbar-item-signin");
-modal = $(".modal");
-overlay = $(".modal__overlay");
-modalBack = $$(".auth-form__controls-back");
-switchSignIn = $(".auth-form__switch-btn-signin");
-switchSignUp = $(".auth-form__switch-btn-signup");
-signUpBtn = $(".signup-btn");
-signInBtn = $(".signin-btn");
-user = $(".header__navbar-user");
-logout = $(".header__navbar-user-item-logout");
-category = $(".category-list");
-productList = $(".home-product .row.sm-gutter");
+const body = $("body");
+const signUp = $(".header__navbar-item-signup");
+const signIn = $(".header__navbar-item-signin");
+const modal = $(".modal");
+const overlay = $(".modal__overlay");
+const modalBack = $$(".auth-form__controls-back");
+const switchSignIn = $(".auth-form__switch-btn-signin");
+const switchSignUp = $(".auth-form__switch-btn-signup");
+const signUpBtn = $(".signup-btn");
+const signInBtn = $(".signin-btn");
+const user = $(".header__navbar-user");
+const logout = $(".header__navbar-user-item-logout");
+
 
 
 // SignUp - SignIn
+const checkIpnutSignUp = () => {
+    const email = $(".signup-email");
+    const password = $(".signup-password");
+    const passwordAgain = $(".signup-password-again");
+    if (!email.value || !password.value || !passwordAgain.value) {
+        if (!email.value) {
+            email.parentNode.classList.add("warning--active");
+        }
+        if (!password.value) {
+            password.parentNode.classList.add("warning--active");
+        }
+        if (!passwordAgain.value) {
+            passwordAgain.parentNode.classList.add("warning--active");
+        }
+        return false;
+    }
+    if (password.value != passwordAgain.value) {
+        passwordAgain.parentNode.classList.add("warning--active");
+        return false;
+    }
+    for (let x of [email, password, passwordAgain]) {
+        x.value = "";
+        x.parentNode.classList.remove("warning--active");
+    }
+
+    return true;
+}
+
+const checkIpnutSignIn = () => {
+    const email = $(".signin-email");
+    const password = $(".signin-password");
+    if (!email.value || !password.value) {
+        if (!email.value) {
+            email.parentNode.classList.add("warning--active");
+        }
+        if (!password.value) {
+            password.parentNode.classList.add("warning--active");
+        }
+        return false;
+    }
+    for (let x of [email, password]) {
+        x.value = "";
+        x.parentNode.classList.remove("warning--active");
+    }
+
+    return true;
+}
+
 signUp.onclick = () => {
     modal.style.display = "flex";
     $(".modal__signin").style.display = "none";
@@ -51,17 +98,21 @@ switchSignUp.onclick = () => {
 }
 
 signUpBtn.onclick = () => {
-    modal.style.display = "none";
-    signUp.style.display = "none";
-    signIn.style.display = "none";
-    user.style.display = "inline-block";
+    if (checkIpnutSignUp()) {
+        modal.style.display = "none";
+        signUp.style.display = "none";
+        signIn.style.display = "none";
+        user.style.display = "inline-block";
+    }
 }
 
 signInBtn.onclick = () => {
-    modal.style.display = "none";
-    signUp.style.display = "none";
-    signIn.style.display = "none";
-    user.style.display = "inline-block";
+    if (checkIpnutSignIn()) {
+        modal.style.display = "none";
+        signUp.style.display = "none";
+        signIn.style.display = "none";
+        user.style.display = "inline-block";
+    }
 }
 
 logout.onclick = () => {
@@ -70,50 +121,27 @@ logout.onclick = () => {
     user.style.display = "none";
 }
 
-// Category
 categorys = [
     {
+        id: 1,
         name: "Sản phẩm"
     },
     {
+        id: 2,
         name: "Chuột máy tính"
     },
     {
+        id: 3,
         name: "Áo nam"
     },
     {
+        id: 4,
         name: "Quần tây"
     }
-]
-
-const addCategory = () => {
-    htmls = categorys.map((category) => {
-        if (category.name == "Sản phẩm") {
-            return `
-            <li class="category-item category-item--active">
-                <a href="#" class="category-item__link">${category.name}</a>
-            </li>
-            `
-        }
-        else {
-            return `
-            <li class="category-item">
-                <a href="#" class="category-item__link">${category.name}</a>
-            </li>
-            `
-        }
-
-    })
-    category.innerHTML = htmls.join("");
-}
-addCategory();
-
-
-
-
-// Product
+];
 products = [
     {
+        id: 1,
         name: "Chuột Funhen",
         img: "https://tinhocngoisao.cdn.vccloud.vn/wp-content/uploads/2019/10/chuot-van-phong-fuhlen-102-1.jpg",
         price: 400000,
@@ -124,10 +152,11 @@ products = [
         liked: 3300,
         sold: 4100,
         isMall: true,
-        date: "05/05/2022",
-        category: categorys[1].name
+        date: "04/05/2022",
+        type: categorys[1].name
     },
     {
+        id: 2,
         name: "Chuột gaming Fuhlen L102 (Đen)",
         img: "https://lh3.googleusercontent.com/Q9LGJSnb3YWZcYxzeAzf3hcDorJ9VMGlqRW02Z8UlSoULWK36IGDeeEbCdcfIise26oImVJY1P3oH2rePTw=w500-rw",
         price: 129000,
@@ -138,10 +167,11 @@ products = [
         liked: 300,
         sold: 1500,
         isMall: false,
-        date: "05/05/2022",
+        date: "06/05/2022",
         type: categorys[1].name
     },
     {
+        id: 3,
         name: "Chuột không dây Logitech MX Anywhere 3 for Mac",
         img: "https://cdn8.web4s.vn/media/products/1540/9techvn-mx-anywhere-3-for-mac-product-gallery-pale-gray-fob.jpg",
         price: 2000000,
@@ -152,10 +182,11 @@ products = [
         liked: 3600,
         sold: 4400,
         isMall: true,
-        date: "05/05/2022",
+        date: "07/05/2022",
         type: categorys[1].name
     },
     {
+        id: 4,
         name: "Áo thun nam Amarni cao cấp",
         img: "https://xuongsiquanao.vn/wp-content/uploads/2018/02/IMG_8187.jpg",
         price: 155000,
@@ -166,10 +197,11 @@ products = [
         liked: 300,
         sold: 1500,
         isMall: true,
-        date: "05/05/2022",
+        date: "04/05/2022",
         type: categorys[2].name
     },
     {
+        id: 5,
         name: "Áo thun nam dài tay xanh cực chất (ATD-187)",
         img: "https://aothudong.com/upload/product/atd-187/ao-thun-nam-dai-tay-xanh-cuc-chat.jpg",
         price: 400000,
@@ -180,10 +212,11 @@ products = [
         liked: 3600,
         sold: 4000,
         isMall: true,
-        date: "05/05/2022",
-        type: categorys[1].name
+        date: "03/05/2022",
+        type: categorys[2].name
     },
     {
+        id: 6,
         name: "Chuột Logitech G502 HERO",
         img: "https://anphat.com.vn/media/product/27290_logitech_g502_hero__1_.jpeg",
         price: 1500000,
@@ -194,10 +227,11 @@ products = [
         liked: 4200,
         sold: 5000,
         isMall: true,
-        date: "05/05/2022",
+        date: "15/05/2022",
         type: categorys[1].name
     },
     {
+        id: 7,
         name: "Quần Tây Nam K93 QTA0024",
         img: "https://product.hstatic.net/1000096703/product/quan-tay-nam-01_793d6eb084054ba385a1ed4df2ea6254_master.jpg",
         price: 280000,
@@ -208,10 +242,358 @@ products = [
         liked: 1200,
         sold: 1200,
         isMall: true,
-        date: "05/05/2022",
+        date: "25/05/2022",
         type: categorys[3].name
     },
     {
+        id: 8,
+        name: "Quần Tây Nam K61 QTA0015",
+        img: "https://product.hstatic.net/1000096703/product/quan-tay-nam-01_5f73521b15c3439093263d9f1800d8ac_master.jpg",
+        price: 280000,
+        discount: 0.1,
+        brand: "Kenta",
+        origin: "Việt Nam",
+        rating: 5,
+        liked: 3600,
+        sold: 3300,
+        isMall: true,
+        date: "15/05/2022",
+        type: categorys[3].name
+    },
+    {
+        id: 9,
+        name: "Chuột Razer DeathAdder V2 Mini",
+        img: "https://anphat.com.vn/media/product/34046_razer_deathadder_v2_mini__1_.jpg",
+        price: 1300000,
+        discount: 0.25,
+        brand: "Razer",
+        origin: "Trung Quốc",
+        rating: 5,
+        liked: 4600,
+        sold: 8400,
+        isMall: true,
+        date: "25/05/2022",
+        type: categorys[1].name
+    },
+    {
+        id: 10,
+        name: "Áo thun polo nam HIDDLE cổ vest ấn tượng - ELE",
+        img: "https://bizweb.dktcdn.net/100/399/392/files/ao-thun-nam-dep-gia-re-3-jpeg.jpg?v=1622708607311",
+        price: 400000,
+        discount: 0.25,
+        brand: "HIDDLE",
+        origin: "Việt Nam",
+        rating: 5,
+        liked: 3600,
+        sold: 6300,
+        isMall: true,
+        date: "25/05/2022",
+        type: categorys[2].name
+    },
+    {
+        id: 11,
+        name: "Áo thun polo nam sọc ngang HIDDLE",
+        img: "https://bizweb.dktcdn.net/100/399/392/files/ao-thun-nam-dep-gia-re-2-jpeg.jpg?v=1622708668394",
+        price: 440000,
+        discount: 0.3,
+        brand: "HIDDLE",
+        origin: "Việt Nam",
+        rating: 4,
+        liked: 4500,
+        sold: 7400,
+        isMall: true,
+        date: "05/04/2022",
+        type: categorys[2].name
+    },
+    {
+        id: 12,
+        name: "QUẦN TÂY (QUẦN ÂU) BIG SIZE TỪ 3XL 4XL 5XL 6XL 7XL 8XL 9XL MÃ BS1774",
+        img: "https://thoitrangbigsize.vn/wp-content/uploads/2020/12/BS1774-1.jpg",
+        price: 485000,
+        discount: 0.25,
+        brand: "Navy",
+        origin: "Việt Nam",
+        rating: 5,
+        liked: 3400,
+        sold: 2300,
+        isMall: false,
+        date: "05/03/2022",
+        type: categorys[3].name
+    },
+    {
+        id: 13,
+        name: "Quần Tây Tối Giản FL02",
+        img: "https://cdn2.yame.vn/pimg/quan-tay-nam-no-style-dai-fl02-0018567/337afc6b-ab1d-2300-642d-001661665d26.jpg?w=540&h=756",
+        price: 425000,
+        discount: 0,
+        brand: "YaMe",
+        origin: "Việt Nam",
+        rating: 4,
+        liked: 4300,
+        sold: 2400,
+        isMall: true,
+        date: "13/05/2022",
+        type: categorys[3].name
+    },
+    {
+        id: 14,
+        name: "Áo thun nam cổ tròn HIDDLE Wanderlust",
+        img: "https://bizweb.dktcdn.net/100/399/392/files/ao-thun-nam-dep-gia-re-jpeg.jpg?v=1622711670438",
+        price: 400000,
+        discount: 0.25,
+        brand: "HIDDLE",
+        origin: "Việt Nam",
+        rating: 5,
+        liked: 4600,
+        sold: 8200,
+        isMall: true,
+        date: "23/05/2022",
+        type: categorys[2].name
+    },
+    {
+        id: 15,
+        name: "Quần tây chất nỉ",
+        img: "https://sandro.com.vn/media/catalog/product/cache/29162ccbe9d79568e67e3d26712ec350/S/a/Sandro_SHPPA00263-44_V_1.jpg",
+        price: 8000000,
+        discount: 0.2,
+        brand: "SANDRO",
+        origin: "Mỹ",
+        rating: 5,
+        liked: 100,
+        sold: 200,
+        isMall: true,
+        date: "12/05/2022",
+        type: categorys[3].name
+    },
+    // page 2
+    {
+        id: 16,
+        name: "Áo thun nam Amarni cao cấp",
+        img: "https://xuongsiquanao.vn/wp-content/uploads/2018/02/IMG_8187.jpg",
+        price: 155000,
+        discount: 0,
+        brand: "Amarni",
+        origin: "Việt Nam",
+        rating: 4,
+        liked: 300,
+        sold: 1500,
+        isMall: true,
+        date: "23/05/2022",
+        type: categorys[2].name
+    },
+    {
+        id: 17,
+        name: "Áo thun nam dài tay xanh cực chất (ATD-187)",
+        img: "https://aothudong.com/upload/product/atd-187/ao-thun-nam-dai-tay-xanh-cuc-chat.jpg",
+        price: 400000,
+        discount: 0.15,
+        brand: "ATD-187",
+        origin: "Trung Quốc",
+        rating: 5,
+        liked: 3600,
+        sold: 4000,
+        isMall: true,
+        date: "12/05/2022",
+        type: categorys[2].name
+    },
+    {
+        id: 18,
+        name: "Chuột Logitech G502 HERO",
+        img: "https://anphat.com.vn/media/product/27290_logitech_g502_hero__1_.jpeg",
+        price: 1500000,
+        discount: 0,
+        brand: "Logitech",
+        origin: "Trung Quốc",
+        rating: 5,
+        liked: 4200,
+        sold: 5000,
+        isMall: true,
+        date: "21/05/2022",
+        type: categorys[1].name
+    },
+    {
+        id: 19,
+        name: "Quần Tây Nam K93 QTA0024",
+        img: "https://product.hstatic.net/1000096703/product/quan-tay-nam-01_793d6eb084054ba385a1ed4df2ea6254_master.jpg",
+        price: 280000,
+        discount: 0.1,
+        brand: "Kenta",
+        origin: "Việt Nam",
+        rating: 5,
+        liked: 1200,
+        sold: 1200,
+        isMall: true,
+        date: "29/05/2022",
+        type: categorys[3].name
+    },
+    {
+        id: 20,
+        name: "Quần Tây Nam K61 QTA0015",
+        img: "https://product.hstatic.net/1000096703/product/quan-tay-nam-01_5f73521b15c3439093263d9f1800d8ac_master.jpg",
+        price: 280000,
+        discount: 0.1,
+        brand: "Kenta",
+        origin: "Việt Nam",
+        rating: 5,
+        liked: 3600,
+        sold: 3300,
+        isMall: true,
+        date: "12/05/2022",
+        type: categorys[3].name
+    },
+    {
+        id: 21,
+        name: "Chuột Razer DeathAdder V2 Mini",
+        img: "https://anphat.com.vn/media/product/34046_razer_deathadder_v2_mini__1_.jpg",
+        price: 1300000,
+        discount: 0.25,
+        brand: "Razer",
+        origin: "Trung Quốc",
+        rating: 5,
+        liked: 4600,
+        sold: 8400,
+        isMall: true,
+        date: "23/05/2022",
+        type: categorys[1].name
+    },
+    {
+        id: 22,
+        name: "Áo thun polo nam sọc ngang HIDDLE",
+        img: "https://bizweb.dktcdn.net/100/399/392/files/ao-thun-nam-dep-gia-re-2-jpeg.jpg?v=1622708668394",
+        price: 440000,
+        discount: 0.3,
+        brand: "HIDDLE",
+        origin: "Việt Nam",
+        rating: 4,
+        liked: 4500,
+        sold: 7400,
+        isMall: true,
+        date: "05/02/2022",
+        type: categorys[2].name
+    },
+    {
+        id: 23,
+        name: "Áo thun polo nam HIDDLE cổ vest ấn tượng - ELE",
+        img: "https://bizweb.dktcdn.net/100/399/392/files/ao-thun-nam-dep-gia-re-3-jpeg.jpg?v=1622708607311",
+        price: 400000,
+        discount: 0.25,
+        brand: "HIDDLE",
+        origin: "Việt Nam",
+        rating: 5,
+        liked: 3600,
+        sold: 6300,
+        isMall: true,
+        date: "05/02/2022",
+        type: categorys[2].name
+    },
+    {
+        id: 24,
+        name: "QUẦN TÂY (QUẦN ÂU) BIG SIZE TỪ 3XL 4XL 5XL 6XL 7XL 8XL 9XL MÃ BS1774",
+        img: "https://thoitrangbigsize.vn/wp-content/uploads/2020/12/BS1774-1.jpg",
+        price: 485000,
+        discount: 0.25,
+        brand: "Navy",
+        origin: "Việt Nam",
+        rating: 5,
+        liked: 3400,
+        sold: 2300,
+        isMall: false,
+        date: "05/01/2022",
+        type: categorys[3].name
+    },
+    {
+        id: 25,
+        name: "Chuột không dây Logitech MX Anywhere 3 for Mac",
+        img: "https://cdn8.web4s.vn/media/products/1540/9techvn-mx-anywhere-3-for-mac-product-gallery-pale-gray-fob.jpg",
+        price: 2000000,
+        discount: 0.15,
+        brand: "Logitech",
+        origin: "Trung Quốc",
+        rating: 5,
+        liked: 3600,
+        sold: 4400,
+        isMall: true,
+        date: "05/12/2022",
+        type: categorys[1].name
+    },
+    {
+        id: 26,
+        name: "Áo thun nam cổ tròn HIDDLE Wanderlust",
+        img: "https://bizweb.dktcdn.net/100/399/392/files/ao-thun-nam-dep-gia-re-jpeg.jpg?v=1622711670438",
+        price: 400000,
+        discount: 0.25,
+        brand: "HIDDLE",
+        origin: "Việt Nam",
+        rating: 5,
+        liked: 4600,
+        sold: 8200,
+        isMall: true,
+        date: "05/11/2022",
+        type: categorys[2].name
+    },
+    {
+        id: 27,
+        name: "Quần tây chất nỉ",
+        img: "https://sandro.com.vn/media/catalog/product/cache/29162ccbe9d79568e67e3d26712ec350/S/a/Sandro_SHPPA00263-44_V_1.jpg",
+        price: 8000000,
+        discount: 0.2,
+        brand: "SANDRO",
+        origin: "Mỹ",
+        rating: 5,
+        liked: 100,
+        sold: 200,
+        isMall: true,
+        date: "05/12/2022",
+        type: categorys[3].name
+    },
+    {
+        id: 28,
+        name: "Quần Tây Tối Giản FL02",
+        img: "https://cdn2.yame.vn/pimg/quan-tay-nam-no-style-dai-fl02-0018567/337afc6b-ab1d-2300-642d-001661665d26.jpg?w=540&h=756",
+        price: 425000,
+        discount: 0,
+        brand: "YaMe",
+        origin: "Việt Nam",
+        rating: 4,
+        liked: 4300,
+        sold: 2400,
+        isMall: true,
+        date: "05/10/2022",
+        type: categorys[3].name
+    },
+    {
+        id: 29,
+        name: "Chuột Funhen",
+        img: "https://tinhocngoisao.cdn.vccloud.vn/wp-content/uploads/2019/10/chuot-van-phong-fuhlen-102-1.jpg",
+        price: 400000,
+        discount: 0.1,
+        brand: "Funhen",
+        origin: "Đài Loan",
+        rating: 4,
+        liked: 3300,
+        sold: 4100,
+        isMall: true,
+        date: "05/02/2022",
+        type: categorys[1].name
+    },
+    {
+        id: 30,
+        name: "Chuột gaming Fuhlen L102 (Đen)",
+        img: "https://lh3.googleusercontent.com/Q9LGJSnb3YWZcYxzeAzf3hcDorJ9VMGlqRW02Z8UlSoULWK36IGDeeEbCdcfIise26oImVJY1P3oH2rePTw=w500-rw",
+        price: 129000,
+        discount: 0,
+        brand: "Funhen",
+        origin: "Đài Loan",
+        rating: 3,
+        liked: 300,
+        sold: 1500,
+        isMall: false,
+        date: "27/05/2022",
+        type: categorys[1].name
+    },
+    // page 3
+    {
+        id: 31,
         name: "Quần Tây Nam K61 QTA0015",
         img: "https://product.hstatic.net/1000096703/product/quan-tay-nam-01_5f73521b15c3439093263d9f1800d8ac_master.jpg",
         price: 280000,
@@ -226,6 +608,7 @@ products = [
         type: categorys[3].name
     },
     {
+        id: 32,
         name: "Chuột Razer DeathAdder V2 Mini",
         img: "https://anphat.com.vn/media/product/34046_razer_deathadder_v2_mini__1_.jpg",
         price: 1300000,
@@ -240,6 +623,7 @@ products = [
         type: categorys[1].name
     },
     {
+        id: 33,
         name: "Áo thun polo nam HIDDLE cổ vest ấn tượng - ELE",
         img: "https://bizweb.dktcdn.net/100/399/392/files/ao-thun-nam-dep-gia-re-3-jpeg.jpg?v=1622708607311",
         price: 400000,
@@ -254,6 +638,7 @@ products = [
         type: categorys[2].name
     },
     {
+        id: 34,
         name: "Áo thun polo nam sọc ngang HIDDLE",
         img: "https://bizweb.dktcdn.net/100/399/392/files/ao-thun-nam-dep-gia-re-2-jpeg.jpg?v=1622708668394",
         price: 440000,
@@ -268,6 +653,7 @@ products = [
         type: categorys[2].name
     },
     {
+        id: 35,
         name: "QUẦN TÂY (QUẦN ÂU) BIG SIZE TỪ 3XL 4XL 5XL 6XL 7XL 8XL 9XL MÃ BS1774",
         img: "https://thoitrangbigsize.vn/wp-content/uploads/2020/12/BS1774-1.jpg",
         price: 485000,
@@ -282,6 +668,7 @@ products = [
         type: categorys[3].name
     },
     {
+        id: 36,
         name: "Quần Tây Tối Giản FL02",
         img: "https://cdn2.yame.vn/pimg/quan-tay-nam-no-style-dai-fl02-0018567/337afc6b-ab1d-2300-642d-001661665d26.jpg?w=540&h=756",
         price: 425000,
@@ -296,34 +683,7 @@ products = [
         type: categorys[3].name
     },
     {
-        name: "Áo thun nam cổ tròn HIDDLE Wanderlust",
-        img: "https://bizweb.dktcdn.net/100/399/392/files/ao-thun-nam-dep-gia-re-jpeg.jpg?v=1622711670438",
-        price: 400000,
-        discount: 0.25,
-        brand: "HIDDLE",
-        origin: "Việt Nam",
-        rating: 5,
-        liked: 4600,
-        sold: 8200,
-        isMall: true,
-        date: "05/05/2022",
-        type: categorys[2].name
-    },
-    {
-        name: "Quần tây chất nỉ",
-        img: "https://sandro.com.vn/media/catalog/product/cache/29162ccbe9d79568e67e3d26712ec350/S/a/Sandro_SHPPA00263-44_V_1.jpg",
-        price: 8000000,
-        discount: 0.2,
-        brand: "SANDRO",
-        origin: "Mỹ",
-        rating: 5,
-        liked: 100,
-        sold: 200,
-        isMall: true,
-        date: "05/05/2022",
-        type: categorys[3].name
-    },
-    {
+        id: 37,
         name: "Chuột Funhen",
         img: "https://tinhocngoisao.cdn.vccloud.vn/wp-content/uploads/2019/10/chuot-van-phong-fuhlen-102-1.jpg",
         price: 400000,
@@ -335,9 +695,10 @@ products = [
         sold: 4100,
         isMall: true,
         date: "05/05/2022",
-        category: categorys[1].name
+        type: categorys[1].name
     },
     {
+        id: 38,
         name: "Chuột gaming Fuhlen L102 (Đen)",
         img: "https://lh3.googleusercontent.com/Q9LGJSnb3YWZcYxzeAzf3hcDorJ9VMGlqRW02Z8UlSoULWK36IGDeeEbCdcfIise26oImVJY1P3oH2rePTw=w500-rw",
         price: 129000,
@@ -352,6 +713,7 @@ products = [
         type: categorys[1].name
     },
     {
+        id: 39,
         name: "Chuột không dây Logitech MX Anywhere 3 for Mac",
         img: "https://cdn8.web4s.vn/media/products/1540/9techvn-mx-anywhere-3-for-mac-product-gallery-pale-gray-fob.jpg",
         price: 2000000,
@@ -366,6 +728,7 @@ products = [
         type: categorys[1].name
     },
     {
+        id: 40,
         name: "Áo thun nam Amarni cao cấp",
         img: "https://xuongsiquanao.vn/wp-content/uploads/2018/02/IMG_8187.jpg",
         price: 155000,
@@ -380,6 +743,7 @@ products = [
         type: categorys[2].name
     },
     {
+        id: 41,
         name: "Áo thun nam dài tay xanh cực chất (ATD-187)",
         img: "https://aothudong.com/upload/product/atd-187/ao-thun-nam-dai-tay-xanh-cuc-chat.jpg",
         price: 400000,
@@ -391,9 +755,10 @@ products = [
         sold: 4000,
         isMall: true,
         date: "05/05/2022",
-        type: categorys[1].name
+        type: categorys[2].name
     },
     {
+        id: 42,
         name: "Chuột Logitech G502 HERO",
         img: "https://anphat.com.vn/media/product/27290_logitech_g502_hero__1_.jpeg",
         price: 1500000,
@@ -408,6 +773,7 @@ products = [
         type: categorys[1].name
     },
     {
+        id: 43,
         name: "Quần Tây Nam K93 QTA0024",
         img: "https://product.hstatic.net/1000096703/product/quan-tay-nam-01_793d6eb084054ba385a1ed4df2ea6254_master.jpg",
         price: 280000,
@@ -422,90 +788,7 @@ products = [
         type: categorys[3].name
     },
     {
-        name: "Quần Tây Nam K61 QTA0015",
-        img: "https://product.hstatic.net/1000096703/product/quan-tay-nam-01_5f73521b15c3439093263d9f1800d8ac_master.jpg",
-        price: 280000,
-        discount: 0.1,
-        brand: "Kenta",
-        origin: "Việt Nam",
-        rating: 5,
-        liked: 3600,
-        sold: 3300,
-        isMall: true,
-        date: "05/05/2022",
-        type: categorys[3].name
-    },
-    {
-        name: "Chuột Razer DeathAdder V2 Mini",
-        img: "https://anphat.com.vn/media/product/34046_razer_deathadder_v2_mini__1_.jpg",
-        price: 1300000,
-        discount: 0.25,
-        brand: "Razer",
-        origin: "Trung Quốc",
-        rating: 5,
-        liked: 4600,
-        sold: 8400,
-        isMall: true,
-        date: "05/05/2022",
-        type: categorys[1].name
-    },
-    {
-        name: "Áo thun polo nam HIDDLE cổ vest ấn tượng - ELE",
-        img: "https://bizweb.dktcdn.net/100/399/392/files/ao-thun-nam-dep-gia-re-3-jpeg.jpg?v=1622708607311",
-        price: 400000,
-        discount: 0.25,
-        brand: "HIDDLE",
-        origin: "Việt Nam",
-        rating: 5,
-        liked: 3600,
-        sold: 6300,
-        isMall: true,
-        date: "05/05/2022",
-        type: categorys[2].name
-    },
-    {
-        name: "Áo thun polo nam sọc ngang HIDDLE",
-        img: "https://bizweb.dktcdn.net/100/399/392/files/ao-thun-nam-dep-gia-re-2-jpeg.jpg?v=1622708668394",
-        price: 440000,
-        discount: 0.3,
-        brand: "HIDDLE",
-        origin: "Việt Nam",
-        rating: 4,
-        liked: 4500,
-        sold: 7400,
-        isMall: true,
-        date: "05/05/2022",
-        type: categorys[2].name
-    },
-    {
-        name: "QUẦN TÂY (QUẦN ÂU) BIG SIZE TỪ 3XL 4XL 5XL 6XL 7XL 8XL 9XL MÃ BS1774",
-        img: "https://thoitrangbigsize.vn/wp-content/uploads/2020/12/BS1774-1.jpg",
-        price: 485000,
-        discount: 0.25,
-        brand: "Navy",
-        origin: "Việt Nam",
-        rating: 5,
-        liked: 3400,
-        sold: 2300,
-        isMall: false,
-        date: "05/05/2022",
-        type: categorys[3].name
-    },
-    {
-        name: "Quần Tây Tối Giản FL02",
-        img: "https://cdn2.yame.vn/pimg/quan-tay-nam-no-style-dai-fl02-0018567/337afc6b-ab1d-2300-642d-001661665d26.jpg?w=540&h=756",
-        price: 425000,
-        discount: 0,
-        brand: "YaMe",
-        origin: "Việt Nam",
-        rating: 4,
-        liked: 4300,
-        sold: 2400,
-        isMall: true,
-        date: "05/05/2022",
-        type: categorys[3].name
-    },
-    {
+        id: 44,
         name: "Áo thun nam cổ tròn HIDDLE Wanderlust",
         img: "https://bizweb.dktcdn.net/100/399/392/files/ao-thun-nam-dep-gia-re-jpeg.jpg?v=1622711670438",
         price: 400000,
@@ -520,6 +803,7 @@ products = [
         type: categorys[2].name
     },
     {
+        id: 45,
         name: "Quần tây chất nỉ",
         img: "https://sandro.com.vn/media/catalog/product/cache/29162ccbe9d79568e67e3d26712ec350/S/a/Sandro_SHPPA00263-44_V_1.jpg",
         price: 8000000,
@@ -532,90 +816,234 @@ products = [
         isMall: true,
         date: "05/05/2022",
         type: categorys[3].name
+    },
+    // page 4
+    {
+        id: 46,
+        name: "Áo thun polo nam HIDDLE cổ vest ấn tượng - ELE",
+        img: "https://bizweb.dktcdn.net/100/399/392/files/ao-thun-nam-dep-gia-re-3-jpeg.jpg?v=1622708607311",
+        price: 400000,
+        discount: 0.25,
+        brand: "HIDDLE",
+        origin: "Việt Nam",
+        rating: 5,
+        liked: 3600,
+        sold: 6300,
+        isMall: true,
+        date: "05/05/2022",
+        type: categorys[2].name
+    },
+    {
+        id: 47,
+        name: "Quần Tây Nam K61 QTA0015",
+        img: "https://product.hstatic.net/1000096703/product/quan-tay-nam-01_5f73521b15c3439093263d9f1800d8ac_master.jpg",
+        price: 280000,
+        discount: 0.1,
+        brand: "Kenta",
+        origin: "Việt Nam",
+        rating: 5,
+        liked: 3600,
+        sold: 3300,
+        isMall: true,
+        date: "05/05/2022",
+        type: categorys[3].name
+    },
+    {
+        id: 48,
+        name: "Chuột Razer DeathAdder V2 Mini",
+        img: "https://anphat.com.vn/media/product/34046_razer_deathadder_v2_mini__1_.jpg",
+        price: 1300000,
+        discount: 0.25,
+        brand: "Razer",
+        origin: "Trung Quốc",
+        rating: 5,
+        liked: 4600,
+        sold: 8400,
+        isMall: true,
+        date: "05/05/2022",
+        type: categorys[1].name
+    },
+    {
+        id: 49,
+        name: "Áo thun polo nam sọc ngang HIDDLE",
+        img: "https://bizweb.dktcdn.net/100/399/392/files/ao-thun-nam-dep-gia-re-2-jpeg.jpg?v=1622708668394",
+        price: 440000,
+        discount: 0.3,
+        brand: "HIDDLE",
+        origin: "Việt Nam",
+        rating: 4,
+        liked: 4500,
+        sold: 7400,
+        isMall: true,
+        date: "05/05/2022",
+        type: categorys[2].name
+    },
+    {
+        id: 50,
+        name: "QUẦN TÂY (QUẦN ÂU) BIG SIZE TỪ 3XL 4XL 5XL 6XL 7XL 8XL 9XL MÃ BS1774",
+        img: "https://thoitrangbigsize.vn/wp-content/uploads/2020/12/BS1774-1.jpg",
+        price: 485000,
+        discount: 0.25,
+        brand: "Navy",
+        origin: "Việt Nam",
+        rating: 5,
+        liked: 3400,
+        sold: 2300,
+        isMall: false,
+        date: "05/05/2022",
+        type: categorys[3].name
+    },
+    {
+        id: 51,
+        name: "Quần Tây Tối Giản FL02",
+        img: "https://cdn2.yame.vn/pimg/quan-tay-nam-no-style-dai-fl02-0018567/337afc6b-ab1d-2300-642d-001661665d26.jpg?w=540&h=756",
+        price: 425000,
+        discount: 0,
+        brand: "YaMe",
+        origin: "Việt Nam",
+        rating: 4,
+        liked: 4300,
+        sold: 2400,
+        isMall: true,
+        date: "05/05/2022",
+        type: categorys[3].name
+    },
+    {
+        id: 52,
+        name: "Chuột Funhen",
+        img: "https://tinhocngoisao.cdn.vccloud.vn/wp-content/uploads/2019/10/chuot-van-phong-fuhlen-102-1.jpg",
+        price: 400000,
+        discount: 0.1,
+        brand: "Funhen",
+        origin: "Đài Loan",
+        rating: 4,
+        liked: 3300,
+        sold: 4100,
+        isMall: true,
+        date: "05/05/2022",
+        type: categorys[1].name
+    },
+    {
+        id: 53,
+        name: "Chuột gaming Fuhlen L102 (Đen)",
+        img: "https://lh3.googleusercontent.com/Q9LGJSnb3YWZcYxzeAzf3hcDorJ9VMGlqRW02Z8UlSoULWK36IGDeeEbCdcfIise26oImVJY1P3oH2rePTw=w500-rw",
+        price: 129000,
+        discount: 0,
+        brand: "Funhen",
+        origin: "Đài Loan",
+        rating: 3,
+        liked: 300,
+        sold: 1500,
+        isMall: false,
+        date: "05/05/2022",
+        type: categorys[1].name
+    },
+    {
+        id: 54,
+        name: "Áo thun nam dài tay xanh cực chất (ATD-187)",
+        img: "https://aothudong.com/upload/product/atd-187/ao-thun-nam-dai-tay-xanh-cuc-chat.jpg",
+        price: 400000,
+        discount: 0.15,
+        brand: "ATD-187",
+        origin: "Trung Quốc",
+        rating: 5,
+        liked: 3600,
+        sold: 4000,
+        isMall: true,
+        date: "05/05/2022",
+        type: categorys[2].name
+    },
+    {
+        id: 55,
+        name: "Chuột Logitech G502 HERO",
+        img: "https://anphat.com.vn/media/product/27290_logitech_g502_hero__1_.jpeg",
+        price: 1500000,
+        discount: 0,
+        brand: "Logitech",
+        origin: "Trung Quốc",
+        rating: 5,
+        liked: 4200,
+        sold: 5000,
+        isMall: true,
+        date: "05/05/2022",
+        type: categorys[1].name
+    },
+    {
+        id: 56,
+        name: "Quần Tây Nam K93 QTA0024",
+        img: "https://product.hstatic.net/1000096703/product/quan-tay-nam-01_793d6eb084054ba385a1ed4df2ea6254_master.jpg",
+        price: 280000,
+        discount: 0.1,
+        brand: "Kenta",
+        origin: "Việt Nam",
+        rating: 5,
+        liked: 1200,
+        sold: 1200,
+        isMall: true,
+        date: "05/05/2022",
+        type: categorys[3].name
+    },
+    {
+        id: 57,
+        name: "Chuột không dây Logitech MX Anywhere 3 for Mac",
+        img: "https://cdn8.web4s.vn/media/products/1540/9techvn-mx-anywhere-3-for-mac-product-gallery-pale-gray-fob.jpg",
+        price: 2000000,
+        discount: 0.15,
+        brand: "Logitech",
+        origin: "Trung Quốc",
+        rating: 5,
+        liked: 3600,
+        sold: 4400,
+        isMall: true,
+        date: "05/05/2022",
+        type: categorys[1].name
+    },
+    {
+        id: 58,
+        name: "Áo thun nam Amarni cao cấp",
+        img: "https://xuongsiquanao.vn/wp-content/uploads/2018/02/IMG_8187.jpg",
+        price: 155000,
+        discount: 0,
+        brand: "Amarni",
+        origin: "Việt Nam",
+        rating: 4,
+        liked: 300,
+        sold: 1500,
+        isMall: true,
+        date: "05/05/2022",
+        type: categorys[2].name
+    },
+    {
+        id: 59,
+        name: "Quần tây chất nỉ",
+        img: "https://sandro.com.vn/media/catalog/product/cache/29162ccbe9d79568e67e3d26712ec350/S/a/Sandro_SHPPA00263-44_V_1.jpg",
+        price: 8000000,
+        discount: 0.2,
+        brand: "SANDRO",
+        origin: "Mỹ",
+        rating: 5,
+        liked: 100,
+        sold: 200,
+        isMall: true,
+        date: "05/05/2022",
+        type: categorys[3].name
+    },
+    {
+        id: 60,
+        name: "Áo thun nam cổ tròn HIDDLE Wanderlust",
+        img: "https://bizweb.dktcdn.net/100/399/392/files/ao-thun-nam-dep-gia-re-jpeg.jpg?v=1622711670438",
+        price: 400000,
+        discount: 0.25,
+        brand: "HIDDLE",
+        origin: "Việt Nam",
+        rating: 5,
+        liked: 4600,
+        sold: 8200,
+        isMall: true,
+        date: "05/05/2022",
+        type: categorys[2].name
     }
+
 ];
-const addProduct = () => {
-    htmls = products.map((product, index) => {
-        html = `
-                    <div class="col  l-2-4 m-4 c-6">
-                      <a class="home-product-item" href="product.html">
-                        <div class="home-product-item__img"
-                          style="background-image: url(${product.img});">
-                        </div>
-                        <h4 class="home-product-item__name">${product.name}</h4>
-                        <div class="home-product-item__price">
-                        `
-        if (product.discount == 0) {
-            html += `<span class="home-product-item__price-new">${product.price}đ</span>`
-        }
-        else {
-            html += `
-                            <span class="home-product-item__price-old">${product.price}đ</span>
-                            <span class="home-product-item__price-new">${product.price * (1 - product.discount)}đ</span>
-                            `
-        }
-        html += `
-                        </div>
-                        <div class="home-product-item__action">
-                          <span class="home-product-item__like home-product-item__like--liked">
-                            <i class="home-product-item__like-icon-empty far fa-heart"></i>
-                            <i class="home-product-item__like-icon-fill fas fa-heart"></i>
-                          </span>
-                          <div class="home-product-item__rating">
-
-                          `
-        for (let i = 0; i < 5; i++) {
-            if (i < product.rating) {
-                html += `<i class="home-product-item__rating--gold fas fa-star"></i>`
-            }
-            else {
-                html += `<i class="fas fa-star"></i>`
-            }
-        }
-        html += `
-                    </div>
-                          <p class="home-product-item__sold">Đã bán ${product.sold / 1000}k</p>
-                        </div>
-                        <div class="home-product-item__origin">
-                          <span class="home-product-item__brand">${product.brand}</span>
-                          <span class="home-product-item__origin-name">${product.origin}</span>
-                        </div>
-                    `
-        if (product.isMall) {
-            html += `<div class="home-product-item__favourite">Mall</div>`
-        }
-        if (product.discount != 0) {
-            html += `
-                        <div class="home-product-item__sale-off">
-                          <span class="home-product-item__sale-off-percent">${product.discount * 100}%</span>
-                          <span class="home-product-item__sale-off-label">GIẢM</span>
-                        </div> 
-                    `
-        }
-        html += `
-                    </a>
-                </div>  
-            `
-        return html;
-    })
-    productList.innerHTML = htmls.join("");
-}
-addProduct();
-
-categoryItem = $$(".category-item")
-for (let i of categoryItem) {
-    i.onclick = () => {
-        i.classList.add("category-item--active");
-        for (let j of categoryItem) {
-            if (j != i) {
-                j.classList.remove("category-item--active");
-            }
-        }
-        for (let product of $$(".home-product-item")) {
-            console.log(product, i.name);
-            if (product.category != i.name) {
-                product.style.display = "none";
-            }
-        }
-    }
-}
+localStorage.setItem("categorys", JSON.stringify(categorys));
+localStorage.setItem("products", JSON.stringify(products));

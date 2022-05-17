@@ -75,6 +75,13 @@ label:hover {
     border-right: 12px solid var(--primary-color);
 }
 
+.description__color-warning,
+.description__size-warning {
+    color: var(--primary-color);
+    font-size: 1.6rem;
+    display: none;
+}
+
 
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 

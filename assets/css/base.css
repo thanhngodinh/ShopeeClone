@@ -70,6 +70,9 @@ html {
   }
 }
 
+a {
+  cursor: pointer;
+}
 
 
 /* Button */

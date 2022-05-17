@@ -531,7 +531,7 @@
   border-radius: 3px;
   box-shadow: 0 1px 5px #ccc;
   display: none;
-  z-index: 1;
+  z-index: 2;
 }
 
 .header__search-history-heading {
@@ -565,28 +565,7 @@
   line-height: 32px;
 }
 
-/* Select */
-.header__search-select {
-  border-left: 1px solid #ccc;
-  padding-left: 16px;
-  position: relative;
-  cursor: pointer;
-}
-
-.header__search-select-label {
-  font-size: 1.4rem;
-  color: var(--text-color);
-}
-
-.header__search-select-icon {
-  color: #4a4a4a;
-  font-size: 1.4rem;
-  margin: 0 12px 0 8px;
-  position: relative;
-  top: 2px;
-  cursor: pointer;
-}
-
+/* Search */
 .header__search-btn {
   background-color: var(--primary-color);
   border: none;
@@ -606,9 +585,6 @@
   color: var(--white-color);
 }
 
-.header__search-select:hover .header__search-option {
-  display: block;
-}
 
 .header__search-option {
   position: absolute;
@@ -791,13 +767,17 @@
 
 .header__cart-item-info {
     width: 100%;
-    display: flex;
-    justify-content: space-between;
     margin-left: 8px;
 
 }
+.header__cart-item-info-des {
+  display: flex;
+  justify-content: space-between;
+  height: 50%;
+}
 
 .header__cart-item-name {
+  margin: 0;
     display: block;
     font-size: 1.4rem;
     color: var(--black-color);
@@ -819,18 +799,31 @@
 
 }
 
+.header__cart-quantity {
+  color: var(--text-color);
+  font-size: 1.2rem;
+  padding-left: 8px; 
+}
+
+.header__cart-item-remove {
+  display: flex;
+  justify-content: flex-end;
+  color: var(--text-color);
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
 .header__cart-footer {
     padding: 12px;
     display: flex;
     justify-content: flex-end;
 }
 
-.header__cart-footer-btn {
-
+.header__cart-footer-btn:hover {
+  background-color: var(--primary-color-hover);
 }
 
-.header__cart-item:hover,
-.header__cart-footer-btn:hover {
+.header__cart-item:hover {
   background-color: rgba(45, 48, 238, 0.1);
 }
 
@@ -1356,16 +1349,17 @@ i.home-product-item__like-icon-fill {
   display: none;
 }
 
-/* .modal__signin-body-test {
-  --growth-from: 0.6;
-  --growth-to: 1;
-  background-color: var(--white-color);
-  margin: auto;
-  position: relative;
-  border-radius: 5px;
-  animation: growth linear 0.1s;
+.auth-form__input-warning {
+  font-size: 1.4rem;
+  line-height: 1.6rem;
+  margin-top: 12px;
+  color: var(--primary-color);
   display: none;
-} */
+}
+
+.warning--active .auth-form__input-warning {
+  display: block;
+}
 
 .signup:checked ~ .modal__signup {
   display: flex;
