@@ -94,8 +94,8 @@ const app = {
                                     </div>
                                     <div class="col l-6 m-6 c-0">
                                         <div class="img__like">
-                                            <i class="home-product-item__like-icon-empty far fa-heart"></i>
-                                            <i class="home-product-item__like-icon-fill fas fa-heart"></i>
+                                            <i class="item__like-icon-empty far fa-heart"></i>
+                                            <i class="item__like-icon-fill fas fa-heart"></i>
                                             <p class="img__like-count">Đã thích (${product.liked / 1000}k)</p>
 
                                         </div>
@@ -109,7 +109,8 @@ const app = {
                             <h2 class="description__name">${product.name}</h2>
                             <div class="description__price">
                                 <span class="description__price-old">${product.price}đ</span>
-                                <span class="description__price-new">${product.price * (1 - product.discount)}</span>đ</span>
+                                <span class="description__price-new">${product.price * (1 - product.discount)}đ</span>
+                                <span class="description__price-discount">Giảm ${product.discount*100}%</span>
                             </div>
                             <div class="description__discount">
                                 <span class="description__discount-title">Mã giảm giá của shop</span>
