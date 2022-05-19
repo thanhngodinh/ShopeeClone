@@ -293,8 +293,6 @@ const app = {
     },
 
     start: function () {
-        this.printPrice(18000000000000)
-        this.printPrice(1800)
         this.loadCart();
         this.loadProduct();
         this.handleEvents();
