@@ -1131,6 +1131,8 @@
 
 .home-product-item__like {
   font-size: 1.2rem;
+  padding: 1px;
+  z-index: 1;
 }
 
 .home-product-item__like--liked .home-product-item__like-icon-fill {

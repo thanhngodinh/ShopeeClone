@@ -10,6 +10,18 @@ const app = {
     productId: parseInt(sessionStorage.getItem("productId")) || 1,
     itemInCart: JSON.parse(localStorage.getItem("itemInCart")) || [],
 
+    printPrice: function(price) {
+        let str = price.toString()
+        start = str.length % 3 == 0 ? 2.25 : str.length % 3
+        for (let i = start ; i <= str.length - 3; i+=3) {
+            if (i + i/ 3 < str.length) {
+                str = str.slice(0, i + i/3)  + '.' + str.slice(i + i/3);
+            }
+        }
+        return str
+    },
+
+
     loadCart: function () {
         if (this.itemInCart.length == 0) {
             cartWrapper.style.display = "none";
@@ -97,7 +109,6 @@ const app = {
                                             <i class="item__like-icon-empty far fa-heart"></i>
                                             <i class="item__like-icon-fill fas fa-heart"></i>
                                             <p class="img__like-count">Đã thích (${product.liked / 1000}k)</p>
-
                                         </div>
                                     </div>
                                 </div>
@@ -108,9 +119,20 @@ const app = {
                         <nav class="description">
                             <h2 class="description__name">${product.name}</h2>
                             <div class="description__price">
-                                <span class="description__price-old">${product.price}đ</span>
-                                <span class="description__price-new">${product.price * (1 - product.discount)}đ</span>
-                                <span class="description__price-discount">Giảm ${product.discount*100}%</span>
+                            `
+                    if (product.discount == 0) {
+                        htmls += `<span class="description__price-new">${this.printPrice(product.price)}đ</span>`                     
+                    }
+                    else {
+                        htmls +=
+                        `
+                        <span class="description__price-old">${this.printPrice(product.price)}đ</span>
+                        <span class="description__price-new">${this.printPrice(product.price * (1 - product.discount))}đ</span>
+                        <span class="description__price-discount">Giảm ${product.discount*100}%</span>
+                        `
+                    }
+
+                    htmls += `
                             </div>
                             <div class="description__discount">
                                 <span class="description__discount-title">Mã giảm giá của shop</span>
@@ -237,10 +259,12 @@ const app = {
                 _this.deleteCart()
 
             }
-
         };
 
 
+        $('.img__like').onclick = () => {
+            $('.img__like').classList.toggle('img__like-liked')
+        }
     },
     deleteCart: function () {
         deleteItem.forEach((btn, index) => {
@@ -269,6 +293,8 @@ const app = {
     },
 
     start: function () {
+        this.printPrice(18000000000000)
+        this.printPrice(1800)
         this.loadCart();
         this.loadProduct();
         this.handleEvents();

@@ -4,7 +4,6 @@ const cartList = $(".header__cart-list-item");
 const cartWrapper = $(".header__cart-list-wrapper")
 const category = $(".category-list");
 const productList = $(".home-product .row.sm-gutter");
-const pageBtn = $$(".pagination-item")
 let product = $$(".home-product-item") || [];
 let deleteItem = $$(".header__cart-item-remove") || [];
 
@@ -24,6 +23,16 @@ app = {
         })
     },
 
+    printPrice: function(price) {
+        let str = price.toString()
+        start = str.length % 3 == 0 ? 2.25 : str.length % 3
+        for (let i = start ; i <= str.length - 3; i+=3) {
+            if (i + i/ 3 < str.length) {
+                str = str.slice(0, i + i/3)  + '.' + str.slice(i + i/3);
+            }
+        }
+        return str
+    },
     // category
     loadCategory: function () {
         htmls = categorys.map((category) => {
@@ -81,7 +90,7 @@ app = {
             if (15 * (page - 1) <= index && index < 15 * page) {
                 html = `
                     <div class="col  l-2-4 m-4 c-6">
-                      <a class="home-product-item product-${product.id}" href="product.html">
+                      <a class="home-product-item product-${product.id}" >
                         <div class="home-product-item__img"
                           style="background-image: url(${product.img});">
                         </div>
@@ -89,18 +98,18 @@ app = {
                         <div class="home-product-item__price">
                         `
                 if (product.discount == 0) {
-                    html += `<span class="home-product-item__price-new">${product.price}đ</span>`
+                    html += `<span class="home-product-item__price-new">${this.printPrice(product.price)}đ</span>`
                 }
                 else {
                     html += `
-                            <span class="home-product-item__price-old">${product.price}đ</span>
-                            <span class="home-product-item__price-new">${product.price * (1 - product.discount)}đ</span>
+                            <span class="home-product-item__price-old">${this.printPrice(product.price)}đ</span>
+                            <span class="home-product-item__price-new">${this.printPrice(product.price * (1 - product.discount))}đ</span>
                             `
                 }
                 html += `
                         </div>
                         <div class="home-product-item__action">
-                          <span class="home-product-item__like home-product-item__like--liked">
+                          <span class="home-product-item__like">
                             <i class="home-product-item__like-icon-empty far fa-heart"></i>
                             <i class="home-product-item__like-icon-fill fas fa-heart"></i>
                           </span>
@@ -186,51 +195,84 @@ app = {
         const _this = this
 
         // filter by Category
-        let categoryItem = $$(".category-item")
+        const categoryItem = $$(".category-item")
         categoryItem.forEach((btn) => {
             btn.onclick = () => {
-                _this.activeClass(categoryItem, btn, "category-item--active")
-                if (btn.querySelector("a").innerHTML == "Sản phẩm") {
-                    _this.currCategory = ""
-                    _this.loadProduct(_this.currCategory, _this.currFilter, _this.currPrice, 1)
-                    _this.activeClass(pageBtn, pageBtn[1], "pagination-item--active")
-                }
-                else {
-                    _this.currCategory = btn.querySelector("a").innerHTML
-                    _this.loadProduct(_this.currCategory, _this.currFilter, _this.currPrice, 1)
-                    _this.activeClass(pageBtn, pageBtn[1], "pagination-item--active")
-                }
+                _this.activeClass(categoryItem, btn, "category-item--active");
+                _this.currCategory = btn.querySelector("a").innerHTML == "Sản phẩm" ? "" : btn.querySelector("a").innerHTML;
+                _this.loadProduct(_this.currCategory, _this.currFilter, _this.currPrice, 1);
+                _this.activeClass(pageBtn, pageBtn[1], "pagination-item--active");
             }
         })
 
         // filter by Filters
+        const filterItem = $$(".home-filter__btn")
+        filterItem.forEach((btn) => {
+            btn.onclick = () => {
+                _this.activeClass(filterItem, btn, "btn--primary");
+                _this.currFilter = btn.innerHTML == "Phổ biến" ? "" : btn.innerHTML;
+                _this.loadProduct(_this.currCategory, _this.currFilter, _this.currPrice, 1)
+            }
+        })
 
         // filter by Price
-
+        let priceFilter = $$(".select-input__item")
+        priceFilter.forEach((btn, index) => {
+            btn.onclick = () => {
+                if ($(".select-input__label").innerHTML != btn.innerHTML) {
+                    $(".select-input__label").innerHTML = btn.innerHTML;
+                    _this.currPrice = index == 0 ? "up" : "down";
+                }
+                else {
+                    $(".select-input__label").innerHTML = "Giá"
+                    _this.currPrice = ""
+                }
+                _this.loadProduct(_this.currCategory, _this.currFilter, _this.currPrice, 1)
+            }
+        })
 
         // page control
+        const filterPageBtn = $$(".home-filter__page-btn")
+        filterPageBtn.forEach((btn, index) => {
+            btn.onclick = () => {
+                if (index == 0) {
+                    if (_this.currPage != 1) {
+                        _this.currPage--;
+                        _this.activeClass(pageBtn, pageBtn[_this.currPage], "pagination-item--active");
+                    }
+                }
+                else {
+                    if (_this.currPage != pageBtn.length - 2) {
+                        _this.currPage++;
+                        _this.activeClass(pageBtn, pageBtn[_this.currPage], "pagination-item--active");
+                    }
+                }
+                $(".home-filter__page-current").innerHTML = _this.currPage;
+                _this.loadProduct(_this.currCategory, _this.currFilter, _this.currPrice, _this.currPage);
+            }
+        })
+
+        const pageBtn = $$(".pagination-item")
         pageBtn.forEach((btn, index) => {
             btn.onclick = () => {
                 if (index == 0) {
                     if (_this.currPage != 1) {
                         _this.currPage--;
-                        _this.loadProduct(_this.currCategory, _this.currFilter, _this.currPrice, _this.currPage);
-                        _this.activeClass(pageBtn, pageBtn[_this.currPage], "pagination-item--active")
+                        _this.activeClass(pageBtn, pageBtn[_this.currPage], "pagination-item--active");
                     }
                 }
                 else if (index == pageBtn.length - 1) {
-                    if (_this.currPage != pageBtn.length - 1) {
+                    if (_this.currPage != pageBtn.length - 2) {
                         _this.currPage++;
-                        _this.loadProduct(_this.currCategory, _this.currFilter, _this.currPrice, _this.currPage);
-                        _this.activeClass(pageBtn, pageBtn[_this.currPage], "pagination-item--active")
+                        _this.activeClass(pageBtn, pageBtn[_this.currPage], "pagination-item--active");
                     }
                 }
                 else {
-                    _this.currPage = btn.querySelector("a").innerHTML
-                    _this.loadProduct(_this.currCategory, _this.currFilter, _this.currPrice, _this.currPage);
-                    _this.activeClass(pageBtn, btn, "pagination-item--active")
+                    _this.currPage = btn.querySelector("a").innerHTML;
+                    _this.activeClass(pageBtn, btn, "pagination-item--active");
                 }
-
+                $(".home-filter__page-current").innerHTML = _this.currPage;
+                _this.loadProduct(_this.currCategory, _this.currFilter, _this.currPrice, _this.currPage);
             }
         })
 
@@ -251,7 +293,7 @@ app = {
                 else {
                     this.itemInCart = this.itemInCart.filter((item) => {
                         if (item.id != parseInt(btn.parentNode.parentNode.classList[1].slice(8, btn.parentNode.parentNode.classList[1].length))) {
-                            return item
+                            return item;
                         }
                     })
                     localStorage.setItem("itemInCart", JSON.stringify(this.itemInCart))
@@ -263,15 +305,23 @@ app = {
     },
 
     direct: function () {
+        let like =  $$(".home-product-item__like")
         product.forEach((item, index) => {
+            let isLike = false
+            like[index].onclick = (() => {
+                like[index].classList.toggle("home-product-item__like--liked")
+                isLike = true;
+            })
             item.onclick = () => {
                 // sessionStorage.setItem(product,  product[index])
-                itemId = item.classList[1].slice(8, item.classList[1].length)
-                sessionStorage.setItem("productId",  itemId)
-
-                // window.location.replace("product.html")
-
-
+                if (isLike) {
+                    isLike = false
+                }
+                else {
+                    itemId = item.classList[1].slice(8, item.classList[1].length)
+                    sessionStorage.setItem("productId", itemId)
+                    window.location.replace("product.html")
+                }
             }
         })
     },

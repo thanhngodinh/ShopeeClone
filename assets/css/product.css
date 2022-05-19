@@ -19,24 +19,29 @@
     font-size: 1.6rem;
 }
 
+/* Like */
 .img__like {
     display: flex;
     align-items: center;
 }
 
-.item__like-icon-empty,
-.item__like-icon-fill {
-    top: 12px;
-    font-size: 1.6rem;
-}
-
-i.item__like-icon-empty {
+.img__like-liked .item__like-icon-empty {
     display: none;
 }
 
+.img__like-liked .item__like-icon-fill {
+    display: inline;
+}
+
+i.item__like-icon-empty {
+    font-size: 1.6rem;
+    display: inline-block;;
+}
+
 i.item__like-icon-fill {
-    display: inline-block;
+    font-size: 1.6rem;
     color: #F53D2F;
+    display: none;
 
 }
 
@@ -49,6 +54,7 @@ i.item__like-icon-fill {
 .description__name {
     font-size: 2rem;
     font-weight: 400;
+    line-height: 2.6rem;
 }
 
 /* Price */
@@ -143,7 +149,7 @@ label:hover {
 #description__size-xl:checked ~ .description__size-radio-xl::after {
     content: "";
     position: absolute;
-    bottom: 0;
+    bottom: -1px;
     right: 0;
     border-top: 12px solid transparent;
     border-right: 12px solid var(--primary-color);
