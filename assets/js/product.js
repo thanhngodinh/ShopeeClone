@@ -173,6 +173,7 @@ const app = {
                                     Thêm vào giỏ hàng
                                 </button>
                                 <button class="description__buy-now btn">Mua ngay</button>
+                                <span class="description__buy-stock">${product.stock} sản phẩm có sẵn</span>
                             </div>
                         </nav>
                     </div>
@@ -186,7 +187,13 @@ const app = {
 
     handleEvents: function () {
         const _this = this;
-        addCart = $(".description__buy-add-cart")
+        const likeImg = $('.img__like')
+        const addCart = $(".description__buy-add-cart")
+        const buyNow = $(".description__buy-now")
+
+        likeImg.onclick = () => {
+            likeImg.classList.toggle('img__like-liked');
+        };
 
         addCart.onclick = () => {
             // Check size, color
@@ -213,7 +220,6 @@ const app = {
                     if (item.id == product.id) {
                         item.quantity += parseInt($(".description__quantity-input").value);
                         isInCart = true;
-                        return item;
                     }
                     return item;
                 })
@@ -227,8 +233,6 @@ const app = {
                         ...product,
                         quantity: parseInt($(".description__quantity-input").value)
                     }
-                    console.log(item);
-
                     _this.itemInCart.push(item)
                     localStorage.setItem("itemInCart", JSON.stringify(_this.itemInCart))
                     cartNotice.innerHTML = _this.itemInCart.length;
@@ -262,8 +266,34 @@ const app = {
         };
 
 
-        $('.img__like').onclick = () => {
-            $('.img__like').classList.toggle('img__like-liked')
+        buyNow.onclick = ()  => {
+            // Check size, color
+            if (!$('input[name="size"]:checked') || !$('input[name="color"]:checked')) {
+                if (!$('input[name="size"]:checked')) {
+                    $(".description__size-warning").style.display = "inline-block";
+                }
+                if (!$('input[name="color"]:checked')) {
+                    $(".description__color-warning").style.display = "inline-block";
+                }
+            }
+            else {
+                _this.products = _this.products.map((item) => {
+                    if (item.id == _this.productId) {
+                        item.stock -= parseInt($(".description__quantity-input").value);
+                        return item;
+                    }
+                    return item;
+                })
+                localStorage.setItem("products", JSON.stringify(_this.products));
+                console.log(JSON.parse(localStorage.getItem("products")));
+                $(".description__buy-stock").innerHTML = `${product.stock} sản phẩm có sẵn`
+
+                modal.style.display = "flex";
+                $(".modal__buy-now").style.display = "block";
+                // reset warning
+                $(".description__color-warning").style.display = "none";
+                $(".description__size-warning").style.display = "none";
+            }
         }
     },
     deleteCart: function () {
@@ -280,9 +310,7 @@ const app = {
                 }
                 else {
                     this.itemInCart = this.itemInCart.filter((item) => {
-                        if (item.id != parseInt(btn.parentNode.parentNode.classList[1].slice(8, btn.parentNode.parentNode.classList[1].length))) {
-                            return item
-                        }
+                        return item.id != parseInt(btn.parentNode.parentNode.classList[1].slice(8, btn.parentNode.parentNode.classList[1].length));
                     })
                     localStorage.setItem("itemInCart", JSON.stringify(this.itemInCart))
                     cartNotice.innerHTML = this.itemInCart.length;

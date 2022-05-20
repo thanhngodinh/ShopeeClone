@@ -1340,7 +1340,8 @@ i.home-product-item__like-icon-fill {
 }
 
 .modal__signup,
-.modal__signin {
+.modal__signin,
+.modal__buy-now {
   --growth-from: 0.6;
   --growth-to: 1;
   background-color: var(--white-color);
@@ -1361,12 +1362,4 @@ i.home-product-item__like-icon-fill {
 
 .warning--active .auth-form__input-warning {
   display: block;
-}
-
-.signup:checked ~ .modal__signup {
-  display: flex;
-}
-
-.signin:checked ~ .modal__signin {
-  display: flex;
 }

@@ -68,6 +68,7 @@ const checkIpnutSignIn = () => {
 signUp.onclick = () => {
     modal.style.display = "flex";
     $(".modal__signin").style.display = "none";
+    // $(".modal__overlay").style.display = "block"
     $(".modal__signup").style.display = "block";
 }
 

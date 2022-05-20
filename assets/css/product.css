@@ -178,6 +178,10 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 /* Button */
+.description__buy {
+    margin: 0 18px;
+}
+
 .description__buy-add-cart {
     height: 48px;
     width: 216px;
@@ -185,7 +189,7 @@ input[type=number]::-webkit-outer-spin-button {
     color: var(--primary-color);
     background-color: rgb(255, 245, 241);
     border: 1px solid var(--primary-color);
-    margin: 18px;
+    margin-left: 18px;
 }
 
 .description__buy-add-cart:hover {
@@ -199,8 +203,31 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 1.6rem;
     color: var(--white-color);
     background-color: var(--primary-color);
+    margin-left: 18px;
+
 }
 
 .description__buy-now:hover {
     background-color: var(--primary-color-hover);
+}
+
+.description__buy-stock {
+    font-size: 1.6rem;
+    color: #757575;
+    margin-left: 18px;
+}
+
+.buy-inform {
+    width: 400px;
+    overflow: hidden;
+  }
+  
+.buy-inform__container {
+    padding: 32px;
+    justify-content: center;
+}
+
+.buy-inform__content {
+    font-size: 1.6rem;
+    color: var(--primary-color);
 }
