@@ -68,12 +68,13 @@ const checkIpnutSignIn = () => {
 signUp.onclick = () => {
     modal.style.display = "flex";
     $(".modal__signin").style.display = "none";
-    // $(".modal__overlay").style.display = "block"
+    $(".modal__buy-now").style.display = "none";
     $(".modal__signup").style.display = "block";
 }
 
 signIn.onclick = () => {
     modal.style.display = "flex";
+    $(".modal__buy-now").style.display = "none";
     $(".modal__signup").style.display = "none";
     $(".modal__signin").style.display = "block";
 }

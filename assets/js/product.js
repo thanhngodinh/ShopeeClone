@@ -213,7 +213,7 @@ const app = {
                     cartNotice.style.display = "block";
                 }
                 // add product
-                let product = this.products.filter((pro) => pro.id == this.productId)[0]
+                let product = this.products[this.productId - 1]
                 // check isInCart
                 let isInCart = false
                 _this.itemInCart = _this.itemInCart.map((item) => {
@@ -277,18 +277,13 @@ const app = {
                 }
             }
             else {
-                _this.products = _this.products.map((item) => {
-                    if (item.id == _this.productId) {
-                        item.stock -= parseInt($(".description__quantity-input").value);
-                        return item;
-                    }
-                    return item;
-                })
+                _this.products[_this.productId - 1].stock -= parseInt($(".description__quantity-input").value)
                 localStorage.setItem("products", JSON.stringify(_this.products));
-                console.log(JSON.parse(localStorage.getItem("products")));
-                $(".description__buy-stock").innerHTML = `${product.stock} sản phẩm có sẵn`
 
-                modal.style.display = "flex";
+                $(".description__buy-stock").innerHTML = `${product.stock} sản phẩm có sẵn`
+                $(".modal").style.display = "flex";
+                $(".modal__signup").style.display = "none";
+                $(".modal__signin").style.display = "none";
                 $(".modal__buy-now").style.display = "block";
                 // reset warning
                 $(".description__color-warning").style.display = "none";

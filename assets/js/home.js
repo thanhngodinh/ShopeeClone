@@ -313,7 +313,6 @@ app = {
                 isLike = true;
             })
             item.onclick = () => {
-                // sessionStorage.setItem(product,  product[index])
                 if (isLike) {
                     isLike = false
                 }
@@ -333,7 +332,6 @@ app = {
         this.handleEvents();
         this.deleteCart();
         this.direct();
-
     }
 
 }
