@@ -83,12 +83,12 @@ const app = {
                                             style="background-image: url(${product.img});">
                                         </div>
                                     </div>
-                                    <div class="col l-2-4 m-4 c-0">
+                                    <div class="col l-2-4 m-0 c-0">
                                         <div class="img__extra-img"
                                             style="background-image: url(${product.img});">
                                         </div>
                                     </div>
-                                    <div class="col l-2-4 m-4 c-0">
+                                    <div class="col l-2-4 m-0 c-0">
                                         <div class="img__extra-img"
                                             style="background-image: url(${product.img});">
                                         </div>

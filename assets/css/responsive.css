@@ -32,7 +32,13 @@
     .mobile-category {
         display: flex;
     }
-      
+
+    .description__size label {
+        margin-bottom: 18px
+    }
+    .description__buy-now  {
+        margin: 18px 12px 18px 0;
+    }
 }
 
 /* Tablet */
@@ -51,6 +57,7 @@
     .pagination-item {
         margin: 0 4px;
     }
+
 }
 
 /* Mobile */
