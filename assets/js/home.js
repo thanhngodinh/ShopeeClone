@@ -63,7 +63,6 @@ app = {
             }
         })
         let productsSort = productsCheckCate;
-        // productsSort = productsCheckCate.sort((firstItem, secondItem) => firstItem.price - secondItem.price);
         if (filter == "Mới nhất") {
             productsSort = productsCheckCate.sort((firstItem, secondItem) => {
                 start = new Date(firstItem.date);
@@ -276,6 +275,7 @@ app = {
             }
         })
 
+        // search item
     },
 
     deleteCart: function () {
