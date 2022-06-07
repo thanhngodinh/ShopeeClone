@@ -476,108 +476,122 @@
     </footer>
 
 
-    <!-- Sign up / Sign in -->
-    <div class="modal">
-      <label for="signup-input" class="modal__overlay"></label>
-      <div class="modal__signup">
-        <div class="auth-form">
-          <div class="auth-form__container">
-            <div class="auth-form__header">
-              <h3 class="auth-form__heading">Đăng ký</h3>
-              <span class="auth-form__switch-btn auth-form__switch-btn-signin">Đăng nhập</span>
-            </div>
-
-            <div class="auth-form__form">
-              <div class="auth-form__group">
-                <input type="email" class="auth-form__input signup-email" placeholder="Nhập email của bạn">
-                <span class="auth-form__input-warning">Nhập địa chỉ email của bạn</span>
-              </div>
-              <div class="auth-form__group">
-                <input type="password" class="auth-form__input signup-password" placeholder="Nhập mật khẩu của bạn">
-                <span class="auth-form__input-warning">Nhập mật khẩu của bạn</span>
-              </div>
-              <div class="auth-form__group">
-                <input type="password" class="auth-form__input signup-password-again" placeholder="Nhập lại mật khẩu">
-                <span class="auth-form__input-warning">Mật khẩu chưa trùng khớp</span>
-              </div>
-            </div>
-
-            <div class="auth-form_aside">
-              <p class="auth-form__policy-text">
-                Bằng việc đăng kí, bạn đã đồng ý với F8-Shop về
-                <a href="" class="auth-form__policy-link">Điều khoản dịch vụ</a> &
-                <a href="" class="auth-form__policy-link">Chính sách bảo mật</a>
-              </p>
-            </div>
-
-            <div class="auth-form__controls">
-              <button class="btn auth-form__controls-back">TRỞ LẠI</button>
-              <button class="btn btn--primary signup-btn">ĐĂNG KÝ</button>
-            </div>
+<!-- Modal -->
+<div class="modal">
+  <div class="modal__overlay"></div>
+  <!-- Buy now -->
+  <div class="modal__buy-now">
+      <div class="buy-inform">
+          <div class="buy-inform__container">
+              <span class="buy-inform__content">Bạn đã mua hàng thành công</span>
           </div>
-
-          <div class="auth-form_socials">
-            <a href="" class="btn--with-icon auth-form_socials--facebook">
-              <i class="fab fa-facebook-square"></i>
-              <span>Kết nối với Facebook</span>
-            </a>
-
-            <a href="" class="btn--with-icon auth-form_socials--google">
-              <i class="fab fa-google"></i>
-              <span>Kết nối với Google</span>
-            </a>
-          </div>
-        </div>
-
       </div>
-
-      <div class="modal__signin">
-        <div class="auth-form">
+  </div>
+  <!-- Sign up -->
+  <div class="modal__signup">
+      <div class="auth-form">
           <div class="auth-form__container">
-            <div class="auth-form__header">
-              <h3 class="auth-form__heading">Đăng nhập</h3>
-              <span class="auth-form__switch-btn auth-form__switch-btn-signup">Đăng ký</span>
-            </div>
-
-            <div class="auth-form__form">
-              <div class="auth-form__group">
-                <input type="email" class="auth-form__input signin-email" placeholder="Nhập email của bạn">
-                <span class="auth-form__input-warning">Nhập email của bạn</span>
-              </div>
-              <div class="auth-form__group">
-                <input type="password" class="auth-form__input signin-password" placeholder="Nhập mật khẩu của bạn">
-                <span class="auth-form__input-warning">Nhập mật khẩu của bạn</span>
+              <div class="auth-form__header">
+                  <h3 class="auth-form__heading">Đăng ký</h3>
+                  <span class="auth-form__switch-btn auth-form__switch-btn-signin">Đăng nhập</span>
               </div>
 
-            </div>
-
-            <div class="auth-form_aside">
-              <div class="auth-form__help">
-                <a href="" class="auth-form__help-link auth-form__help-forgot">Quên mật khẩu</a>
-                <span class="auth-form__help-separate"></span>
-                <a href="" class="auth-form__help-link">Cần trợ giúp?</a>
+              <div class="auth-form__form">
+                  <div class="auth-form__group">
+                      <input type="email" class="auth-form__input signup-email"
+                          placeholder="Nhập email của bạn">
+                      <span class="auth-form__input-warning">Nhập địa chỉ email của bạn</span>
+                  </div>
+                  <div class="auth-form__group">
+                      <input type="password" class="auth-form__input signup-password"
+                          placeholder="Nhập mật khẩu của bạn">
+                      <span class="auth-form__input-warning">Nhập mật khẩu của bạn</span>
+                  </div>
+                  <div class="auth-form__group">
+                      <input type="password" class="auth-form__input signup-password-again"
+                          placeholder="Nhập lại mật khẩu">
+                      <span class="auth-form__input-warning">Mật khẩu chưa trùng khớp</span>
+                  </div>
               </div>
+
+              <div class="auth-form_aside">
+                  <p class="auth-form__policy-text">
+                      Bằng việc đăng kí, bạn đã đồng ý với F8-Shop về
+                      <a href="" class="auth-form__policy-link">Điều khoản dịch vụ</a> &
+                      <a href="" class="auth-form__policy-link">Chính sách bảo mật</a>
+                  </p>
+              </div>
+
               <div class="auth-form__controls">
-                <button class="btn auth-form__controls-back">TRỞ LẠI</button>
-                <button class="btn btn--primary signin-btn">ĐĂNG NHẬP</button>
+                  <button class="btn auth-form__controls-back">TRỞ LẠI</button>
+                  <button class="btn btn--primary signup-btn">ĐĂNG KÝ</button>
               </div>
-            </div>
           </div>
 
           <div class="auth-form_socials">
-            <a href="" class="btn--with-icon auth-form_socials--facebook">
-              <i class="fab fa-facebook-square"></i>
-              <span>Đăng nhập với Facebook</span>
-            </a>
+              <a href="" class="btn--with-icon auth-form_socials--facebook">
+                  <i class="fab fa-facebook-square"></i>
+                  <span>Kết nối với Facebook</span>
+              </a>
 
-            <a href="" class="btn--with-icon auth-form_socials--google">
-              <i class="fab fa-google"></i>
-              <span>Đăng nhập với Google</span>
-            </a>
+              <a href="" class="btn--with-icon auth-form_socials--google">
+                  <i class="fab fa-google"></i>
+                  <span>Kết nối với Google</span>
+              </a>
           </div>
-        </div>
       </div>
-    </div>
+
+  </div>
+  <!-- Sign In -->
+  <div class="modal__signin">
+      <div class="auth-form">
+          <div class="auth-form__container">
+              <div class="auth-form__header">
+                  <h3 class="auth-form__heading">Đăng nhập</h3>
+                  <span class="auth-form__switch-btn auth-form__switch-btn-signup">Đăng ký</span>
+              </div>
+
+              <div class="auth-form__form">
+                  <div class="auth-form__group">
+                      <input type="email" class="auth-form__input signin-email"
+                          placeholder="Nhập email của bạn">
+                      <span class="auth-form__input-warning">Nhập email của bạn</span>
+                  </div>
+                  <div class="auth-form__group">
+                      <input type="password" class="auth-form__input signin-password"
+                          placeholder="Nhập mật khẩu của bạn">
+                      <span class="auth-form__input-warning">Nhập mật khẩu của bạn</span>
+                  </div>
+
+              </div>
+
+              <div class="auth-form_aside">
+                  <div class="auth-form__help">
+                      <a href="" class="auth-form__help-link auth-form__help-forgot">Quên mật khẩu</a>
+                      <span class="auth-form__help-separate"></span>
+                      <a href="" class="auth-form__help-link">Cần trợ giúp?</a>
+                  </div>
+                  <div class="auth-form__controls">
+                      <button class="btn auth-form__controls-back">TRỞ LẠI</button>
+                      <button class="btn btn--primary signin-btn">ĐĂNG NHẬP</button>
+                  </div>
+              </div>
+          </div>
+
+          <div class="auth-form_socials">
+              <a href="" class="btn--with-icon auth-form_socials--facebook">
+                  <i class="fab fa-facebook-square"></i>
+                  <span>Đăng nhập với Facebook</span>
+              </a>
+
+              <a href="" class="btn--with-icon auth-form_socials--google">
+                  <i class="fab fa-google"></i>
+                  <span>Đăng nhập với Google</span>
+              </a>
+          </div>
+      </div>
+  </div>
+</div>
 
 </body>
 
